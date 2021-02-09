@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+import Login from './components/login';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+const routing = (
+  <Router>
+    <Suspense fallback={
+        <div>
+          
+        </div>
+      }>
+        <div>
+          <Route exact path="/" component={App}/>
+          <Route exact path="/login" component={Login}/>
+        </div>
+      </Suspense>
+  </Router>
+)
+
+ReactDOM.render(routing,
   document.getElementById('root')
 );
 
