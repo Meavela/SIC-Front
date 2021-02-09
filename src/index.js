@@ -2,7 +2,8 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import App from './App';
+import NavbarComponent from "./components/navbar-component";
+import Result from './components/result';
 import reportWebVitals from './reportWebVitals';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import Login from './components/login';
@@ -15,7 +16,8 @@ const routing = (
       </div>
     }>
       <div>
-        <Route exact path="/" component={App} />
+        <NavbarComponent />
+        <Route exact path="/" component={Result} />
         <Route exact path="/login" component={Login} />
       </div>
     </Suspense>
