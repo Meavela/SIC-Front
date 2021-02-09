@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
@@ -9,15 +10,15 @@ import Login from './components/login';
 const routing = (
   <Router>
     <Suspense fallback={
-        <div>
-          
-        </div>
-      }>
-        <div>
-          <Route exact path="/" component={App}/>
-          <Route exact path="/login" component={Login}/>
-        </div>
-      </Suspense>
+      <div>
+
+      </div>
+    }>
+      <div>
+        <Route exact path="/" component={App} />
+        <Route exact path="/login" component={Login} />
+      </div>
+    </Suspense>
   </Router>
 )
 
