@@ -1,9 +1,6 @@
 import React from 'react';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card'
 import '../css/admin.css';
 
 class Admin extends React.Component {
@@ -21,7 +18,7 @@ class Admin extends React.Component {
                                     This admin pages allows to create new users account for the application.
                                     Only an administrator can access to this page.
                                     </Card.Text>
-                                    <Card.Link href="/admin/users">Access here</Card.Link>
+                                    <Link to="/admin/users" >Access here</Link>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -35,7 +32,7 @@ class Admin extends React.Component {
                                     We can't delete user vote, only the choices.
                                     Only an administrator can access to this page.
                                     </Card.Text>
-                                    <Card.Link href="/admin/votes">Access here</Card.Link>
+                                    <Link to="/admin/votes" >Access here</Link>
                                 </Card.Body>
                             </Card>
                         </Col>
