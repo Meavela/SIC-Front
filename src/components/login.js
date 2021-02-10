@@ -29,7 +29,6 @@ class Login extends React.Component {
     submitLogin = () => {
         console.log(this.state)
         if (this.state.username == 'admin' && this.state.password == '123456') {
-            console.log("redirect")
             this.setState({error: '', redirect: true});
         }else {
             this.setState({error: 'Username or password are not correct, please try again', redirect: false});
