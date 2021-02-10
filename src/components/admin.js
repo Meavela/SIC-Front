@@ -12,8 +12,8 @@ class Admin extends React.Component {
             <>
                 <Container className="styleContainer">
                     <Row>
-                        <Col className="styleRow">
-                            <Card style={{ width: '18rem' }}>
+                        <Col>
+                            <Card className="styleCard">
                                 <Card.Body>
                                     <Card.Title>Admin Users</Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted">Create new users</Card.Subtitle>
@@ -25,8 +25,8 @@ class Admin extends React.Component {
                                 </Card.Body>
                             </Card>
                         </Col>
-                        <Col className="styleRow">
-                        <Card style={{ width: '18rem' }}>
+                        <Col>
+                            <Card className="styleCard">
                                 <Card.Body>
                                     <Card.Title>Admin Votes</Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted">Create/Delete choices votes</Card.Subtitle>
