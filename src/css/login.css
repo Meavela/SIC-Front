@@ -4,3 +4,8 @@
     width: 50%;
     margin-top: 10%;
 }
+
+.errorContent{
+    color: red;
+    font-weight: bold;
+}
