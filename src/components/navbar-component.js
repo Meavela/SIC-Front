@@ -2,7 +2,17 @@ import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 
 class NavbarComponent extends React.Component {
+
+    constructor(props) {
+        super(props);
+        console.log(this.props)
+        //this.state = { username: '', password: '', error: '', redirect: false };
+    }
+
     render() {
+
+        const { username } = this.props
+
         return (
             <div>
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -10,7 +20,12 @@ class NavbarComponent extends React.Component {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto"></Nav>
                         <Nav>
-                            <Nav.Link href="/login">Se connecter</Nav.Link>
+                            {
+                                username ?
+                                    <p>{username}</p>
+                                :
+                                    <Nav.Link href="/login">Se connecter</Nav.Link>
+                            }
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
