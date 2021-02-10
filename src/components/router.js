@@ -17,7 +17,7 @@ const RouterNav = () => {
             <NavbarComponent username={username} />
             <Suspense fallback={
                 <div>
-
+                    
                 </div>
             }>
                 <div>
