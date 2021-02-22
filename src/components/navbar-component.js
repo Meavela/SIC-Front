@@ -21,7 +21,7 @@ class NavbarComponent extends React.Component {
                         <Nav>
                             {
                                 username ?
-                                    <p>{username}</p>
+                                    <p style={{color: "white"}}>{username}</p>
                                 :
                                     <Nav.Link href="/login">Se connecter</Nav.Link>
                             }

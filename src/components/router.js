@@ -25,7 +25,7 @@ const RouterNav = () => {
                     <Route exact path="/admin" component={Admin}/>
                     <Route exact path="/admin/users" component={AdminUsers}/>
                     <Route exact path="/admin/votes" component={AdminVotes}/>
-                    <Route exact path="/" component={Questions} />
+                    <Route exact path="/" component={() => <Questions username={username}/>} />
                 </div>
             </Suspense>
         </Router>

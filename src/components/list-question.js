@@ -38,14 +38,14 @@ class Questions extends React.Component {
                     <Col xs={6} md={4}>
                         <ListGroup style={{ marginTop: 200 }}>
                             {this.state.listQuestion.map((item, i) =>
-                                <ListGroup.Item key={i} action onClick={() => this.switchQuestion(item.ID)}>
+                                <ListGroup.Item style={item.ID == this.state.activeItem ? {backgroundColor: '#0069D9', color: "white"} : null} key={i} action onClick={() => this.switchQuestion(item.ID)}>
                                     {item.Text}
                                 </ListGroup.Item>
                             )}
                         </ListGroup>
                     </Col>
                     <Col>
-                        <Result questionID={this.state.activeItem} />
+                        <Result questionID={this.state.activeItem} username={this.props.username} />
                     </Col>
                 </Row>
             </div>
