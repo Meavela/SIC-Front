@@ -60,7 +60,7 @@ class Login extends React.Component {
                         </Form.Group>
     
                         <Button variant="primary" onClick={this.submitLogin}>
-                            Submit
+                            Login
                         </Button>
                     </Form>
                 </div>
