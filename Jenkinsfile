@@ -7,6 +7,7 @@ pipeline {
                 echo 'Building..'
                 sh 'node --version'
                 sh 'npm --version'
+                sh 'npm i -g jest'
                 sh 'npm i'
             }
         }
@@ -14,6 +15,11 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh 'npm run test'
+            }
+        }
+        stage("SonarQube analysis") {
+            steps {
+                sh 'sonar-scanner -Dsonar.projectKey=SCI-Front -Dsonar.sources=. -Dsonar.host.url=http://20.56.176.197/ -Dsonar.login=5b76c6b81aaa1b6510d14a1da7ad9639c5e349e5'
             }
         }
         stage('Deploy') {
