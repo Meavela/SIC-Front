@@ -8,29 +8,27 @@ class Questions extends React.Component {
         super(props);
         this.state = {
             listQuestion: [],
+            activeItem: 1
         };
     }
 
-    viewResult() {
-        ;
+    switchQuestion(id) {
+        console.log(id)
+        this.setState({activeItem: id})
     }
 
-    getQuestions() {
-        var questions = []
-        axios.get('http://localhost:3005/question/all').then(
-            response => {
-                questions = response
-                console.log(questions)
-            }
-        )
-
-        this.setState({
-            listQuestion: questions
-        })
+    async getQuestions() {
+        let questions = await axios.get('http://localhost:3005/questions/all')
+        console.log(questions)
+        return questions;
     }
 
     componentDidMount() {
-        this.getQuestions()
+        this.getQuestions().then(res => {
+            this.setState({
+                listQuestion: res.data
+            })
+        })
     }
 
     render() {
@@ -38,21 +36,18 @@ class Questions extends React.Component {
             <div>
                 <Row>
                     <Col xs={6} md={4}>
-                        <ListGroup style={{ marginTop: 200 }} defaultActiveKey="#id1">
+                        <ListGroup style={{ marginTop: 200 }}>
                             {this.state.listQuestion.map((item, i) =>
-                                <ListGroup.Item action href="#id1" onClick={this.viewResult("id1")}>
-                                    Question 1
+                                <ListGroup.Item key={i} action onClick={() => this.switchQuestion(item.ID)}>
+                                    {item.Text}
                                 </ListGroup.Item>
                             )}
                         </ListGroup>
                     </Col>
                     <Col>
-                        <Result questionID={"1"} />
+                        <Result questionID={this.state.activeItem} />
                     </Col>
                 </Row>
-
-
-
             </div>
         )
     }
