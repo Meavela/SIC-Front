@@ -2,18 +2,38 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button,Table } from 'react-bootstrap';
 import '../css/admin-users.css';
+import axios from 'axios';
 
 class AdminUsers extends React.Component {
     constructor(props) {
         super(props);
         console.log(this.props)
-        this.state = { username: '', password: '', error: ''};
+        this.state = { 
+            listUsers: [], 
+            username: '', 
+            password: '', 
+            error: '',
+            success: ''};
     }
 
     componentDidUpdate() {
         if(this.state.redirect) {
             this.props.setUsername(this.state.username);
         }
+    }
+
+    componentDidMount() {
+        this.getUsers().then(res => {
+            this.setState({
+                listUsers: res.data
+            })
+        })
+    }
+
+    async getUsers() {
+        let users = await axios.get('http://localhost:3005/users')
+        // console.log(users)
+        return users;
     }
 
     changeUsername = (event) => {
@@ -26,10 +46,28 @@ class AdminUsers extends React.Component {
         this.setState({password: event.target.value});
     }
 
+    async isExistUser(json){
+        let login = await axios.post('http://localhost:3005/login', json)
+        if (login.status == "OK") {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     submitCreate = () => {
         console.log(this.state)
-        if (this.state.username == 'admin' && this.state.password == '123456') {
-            this.setState({error: 'Username or password already exists'});
+        var json = {"username":this.state.username, "password": this.state.password};
+        console.log(JSON.stringify(json))
+        var isExist = this.isExistUser(JSON.stringify(json));
+
+        if (isExist) {
+            this.setState({error: 'Username already exists'});
+        }else{
+            // create the user
+            this.setState({success: 'Your user has been created'});
+            // add to the list
         }
     }
 
@@ -59,6 +97,10 @@ class AdminUsers extends React.Component {
                             <Button variant="primary" onClick={this.submitCreate}>
                                 Create
                             </Button>
+
+                            <Form.Group>
+                                <Form.Label className="successContent">{this.state.success}</Form.Label>
+                            </Form.Group>
                         </Form>
                     </div>
                     {/* formulaire de création + popup disant que ça a bien été créé */}
@@ -68,23 +110,17 @@ class AdminUsers extends React.Component {
                     <Table striped bordered hover variant="blue">
                         <thead>
                             <tr>
-                            <th>Id</th>
-                            <th>Username</th>
+                                <th>Id</th>
+                                <th>Username</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            </tr>
-                            <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            </tr>
-                            <tr>
-                            <td>3</td>
-                            <td>Lou</td>
-                            </tr>
+                            {this.state.listUsers.map((item, i) =>
+                                <tr key={i}>
+                                    <td>{item.ID}</td>
+                                    <td>{item.Username}</td>
+                                </tr>
+                            )}
                         </tbody>
                     </Table>
                 </div>

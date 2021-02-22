@@ -13,6 +13,11 @@
     font-weight: bold;
 }
 
+.successContent{
+    color: green;
+    font-weight: bold;
+}
+
 .title{
     margin-top: 5%;
     text-align: center;
