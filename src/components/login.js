@@ -26,9 +26,23 @@ class Login extends React.Component {
         this.setState({password: event.target.value});
     }
 
+    async isExistUser(json){
+        let login = await axios.post('http://localhost:3005/login', json)
+        if (login.status == "OK") {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     submitLogin = () => {
         console.log(this.state)
-        if (this.state.username == 'admin' && this.state.password == '123456') {
+        var json = {"username":this.state.username, "password": this.state.password};
+        console.log(JSON.stringify(json))
+        var isExist = this.isExistUser(JSON.stringify(json));
+
+        if (isExist) {
             this.setState({error: '', redirect: true});
         }else {
             this.setState({error: 'Username or password are not correct, please try again', redirect: false});
