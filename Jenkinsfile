@@ -10,12 +10,6 @@ pipeline {
                 /* sh 'npm i'*/
             }
         }
-        stage('Lint') {
-            steps {
-                echo 'Linting..'
-                sh 'npm run lint'
-            }
-        }
         stage('Test') {
             steps {
                 echo 'Testing..'
@@ -29,10 +23,10 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            archiveArtifacts artifacts: 'coverage/lcov-report/*', fingerprint: true
-            archiveArtifacts artifacts: 'test-report.html', fingerprint: true
-        }
-    }
+    // post {
+    //     always {
+    //         archiveArtifacts artifacts: 'coverage/lcov-report/*', fingerprint: true
+    //         archiveArtifacts artifacts: 'test-report.html', fingerprint: true
+    //     }
+    // }
 }

@@ -6,7 +6,6 @@ class NavbarComponent extends React.Component {
     constructor(props) {
         super(props);
         console.log(this.props)
-        //this.state = { username: '', password: '', error: '', redirect: false };
     }
 
     render() {
