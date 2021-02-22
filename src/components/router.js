@@ -1,7 +1,7 @@
 import React, { Component, Suspense, useState } from 'react'
 import '../index.css';
 import NavbarComponent from "./navbar-component";
-import Result from './result';
+import Questions from './list-question';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import Login from './login';
 
@@ -18,8 +18,8 @@ const RouterNav = () => {
                 </div>
             }>
                 <div>
-                    <Route exact path="/" component={Result} />
-                    <Route exact path="/login" component={() => <Login username={username} setUsername={setUsername} />}/>
+                    <Route exact path="/" component={Questions} />
+                    <Route exact path="/login" component={() => <Login username={username} setUsername={setUsername} />} />
                 </div>
             </Suspense>
         </Router>
