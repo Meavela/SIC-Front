@@ -24,37 +24,54 @@ class Result extends React.Component {
 
     async getOptions() {
         let res = await axios.get('http://localhost:3005/question/' + this.props.questionID);
-        let res2 = await axios.get('http://localhost:3005/question/' + this.props.questionID + '/vote');
-        console.log(res)
-        console.log(res2)
+        //console.log(res)
         this.setState({
             question: res.data.question,
             options: res.data.option,
-            vote: res2.data
         })
+
+        await this.getVote();
     }
 
     async addVote(id) {
-        console.log(id)
+        //console.log(id)
         await axios.post(`http://localhost:3005/question/vote/add`, {id, username: this.props.username});
         this.getOptions();
     }
 
+    async getVote() {
+        const { options } = this.state;
+        let vote = []
+        for(const option of options) {
+            let res = await axios.get('http://localhost:3005/question/' + option.ID + '/vote')
+            vote.push(res.data);
+        }
+
+        this.setState({vote: vote});
+    }
+
     countVote(id) {
+        console.log(id)
+        console.log(this.state.vote)
         const {vote} = this.state;
         let count = 0;
-        vote.forEach((item) => {
-            console.log(item)
-            if(item.Choice === id) count++;
-        })
+        if(vote) {
+            vote.forEach(item => {
+                item.forEach(item2 => {
+                    console.log(item2)
+                    if(item2.Choice == id) count++;
+                })
+            })
+        }
+
         return count;
     }
 
     render() {
 
-        const { question, options } = this.state;
+        const { question, options, vote } = this.state;
         const { username } = this.props;
-        console.log(username)
+        //console.log(username)
 
         return (
             <div>

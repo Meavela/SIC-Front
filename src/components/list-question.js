@@ -13,13 +13,13 @@ class Questions extends React.Component {
     }
 
     switchQuestion(id) {
-        console.log(id)
+        //console.log(id)
         this.setState({activeItem: id})
     }
 
     async getQuestions() {
         let questions = await axios.get('http://localhost:3005/questions/all')
-        console.log(questions)
+        //console.log(questions)
         return questions;
     }
 
