@@ -8,7 +8,8 @@ class Result extends React.Component {
         this.state = {
             question: null,
             options: null,
-            vote: null
+            vote: null,
+            hasVote: []
         };
     }
 
@@ -35,31 +36,56 @@ class Result extends React.Component {
 
     async addVote(id) {
         //console.log(id)
-        await axios.post(`http://localhost:3005/question/vote/add`, {id, username: this.props.username});
+        await axios.post(`http://localhost:3005/question/vote/add`, { id, username: this.props.username });
+        this.getOptions();
+    }
+
+    async removeVote(id) {
+        console.log(id)
+        await axios.delete(`http://localhost:3005/question/` + id + `/vote/remove`);
         this.getOptions();
     }
 
     async getVote() {
         const { options } = this.state;
         let vote = []
-        for(const option of options) {
+        for (const option of options) {
             let res = await axios.get('http://localhost:3005/question/' + option.ID + '/vote')
-            vote.push(res.data);
+            vote.push(res.data)
         }
 
-        this.setState({vote: vote});
+        this.setState({ vote: vote, hasVote: [] });
+
+        let idUser = await axios.get('http://localhost:3005/user/' + this.props.username + '/username')
+        this.checkUser(idUser.data.ID);
+    }
+
+    checkUser(id) {
+        var vote = this.state.vote
+        var result = []
+        var hasVote = []
+        console.log(vote)
+        for (var i = 0; i < vote.length; i++) {
+            for (let j = 0; j < vote[i].length; j++) {
+                result.push(vote[i][j].User);
+            }
+            if (result.indexOf(id) != -1) {
+                hasVote.push(true)
+            } else {
+                hasVote.push(false)
+            }
+        }
+
+        this.setState({ hasVote: hasVote });
     }
 
     countVote(id) {
-        console.log(id)
-        console.log(this.state.vote)
-        const {vote} = this.state;
+        const { vote } = this.state;
         let count = 0;
-        if(vote) {
+        if (vote) {
             vote.forEach(item => {
                 item.forEach(item2 => {
-                    console.log(item2)
-                    if(item2.Choice == id) count++;
+                    if (item2.Choice == id) count++;
                 })
             })
         }
@@ -69,9 +95,8 @@ class Result extends React.Component {
 
     render() {
 
-        const { question, options, vote } = this.state;
+        const { question, options, vote, hasVote } = this.state;
         const { username } = this.props;
-        //console.log(username)
 
         return (
             <div>
@@ -86,7 +111,12 @@ class Result extends React.Component {
                                             <Card.Body>
                                                 <Card.Title>{item.Text}</Card.Title>
                                                 <Card.Text style={{ fontSize: 20 }}>{this.countVote(item.ID)}</Card.Text>
-                                                <Button variant="primary" disabled={username ? false : true} onClick={() => this.addVote(item.ID)}>Voter</Button>
+                                                {hasVote[i] ?
+                                                    <Button variant="success" disabled={username ? false : true} onClick={() => this.removeVote(item.ID)}>À voté !</Button>
+                                                    :
+                                                    <Button variant="primary" disabled={username ? false : true} onClick={() => this.addVote(item.ID)}>Voter</Button>
+                                                }
+
                                             </Card.Body>
                                         </Card>
                                     </Col>
