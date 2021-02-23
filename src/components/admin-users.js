@@ -47,7 +47,9 @@ class AdminUsers extends React.Component {
     }
 
     async isExistUser(json){
+        console.log(json)
         let login = await axios.post('http://localhost:3005/login', json)
+        console.log(login)
         if (login.data.status == "OK") {
             return true;
         }
@@ -58,6 +60,7 @@ class AdminUsers extends React.Component {
 
     async addUser(json){
         let isCreated = await axios.post('http://localhost:3005/users/add', json)
+        console.log(isCreated)
         if (isCreated.data.status == "OK") {
             return true;
         }
@@ -69,12 +72,12 @@ class AdminUsers extends React.Component {
     submitCreate = async () => {
         console.log(this.state)
         var json = {"username":this.state.username, "password": this.state.password};
-        console.log(JSON.stringify(json))
-        var isExist = await this.isExistUser(JSON.stringify(json));
-        
+        var isExist = await this.isExistUser(json);
         if (isExist) {
+            console.log("User existe")
             this.setState({error: 'Username already exists'});
         }else{
+            console.log("User n'existe pas")
             if (await this.addUser(json)) {
                 this.setState({success: 'Your user has been created'});
                 // ajout à la liste
@@ -103,21 +106,22 @@ class AdminUsers extends React.Component {
                                 <Form.Control type="password" placeholder="Enter Password" onChange={this.changePassword}/>
                             </Form.Group>
 
-                            <Form.Group>
-                                <Form.Label className="errorContent">{this.state.error}</Form.Label>
+                            <Form.Group className="errorContent">
+                                <Form.Label >{this.state.error}</Form.Label>
                             </Form.Group>
 
-                            <Button variant="primary" onClick={this.submitCreate}>
-                                Create
-                            </Button>
+                            <Form.Group className="submitButton">
+                                <Button variant="primary" onClick={this.submitCreate}>
+                                    Create
+                                </Button>
+                            </Form.Group>
+                            
 
-                            <Form.Group>
-                                <Form.Label className="successContent">{this.state.success}</Form.Label>
+                            <Form.Group className="successContent">
+                                <Form.Label >{this.state.success}</Form.Label>
                             </Form.Group>
                         </Form>
-                    </div>
-                    {/* formulaire de création + popup disant que ça a bien été créé */}
-                    
+                    </div>                    
                 </div>
                 <div className="contentTable">
                     <Table striped bordered hover variant="blue">
