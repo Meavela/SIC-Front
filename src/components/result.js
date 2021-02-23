@@ -62,10 +62,9 @@ class Result extends React.Component {
 
     checkUser(id) {
         var vote = this.state.vote
-        var result = []
         var hasVote = []
-        console.log(vote)
         for (var i = 0; i < vote.length; i++) {
+            var result = []
             for (let j = 0; j < vote[i].length; j++) {
                 result.push(vote[i][j].User);
             }
