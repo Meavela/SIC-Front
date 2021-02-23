@@ -11,6 +11,7 @@ import AdminVotes from './admin-votes';
 const RouterNav = () => {
 
     const [username, setUsername] = useState();
+    const [questionID, setQuestionID] = useState(1);
 
     return (
         <Router>
@@ -25,7 +26,7 @@ const RouterNav = () => {
                     <Route exact path="/admin" component={Admin}/>
                     <Route exact path="/admin/users" component={AdminUsers}/>
                     <Route exact path="/admin/votes" component={AdminVotes}/>
-                    <Route exact path="/" component={() => <Questions username={username}/>} />
+                    <Route exact path="/" component={() =>  <Questions username={username} questionID={questionID} setQuestionID={setQuestionID}/>} />
                 </div>
             </Suspense>
         </Router>

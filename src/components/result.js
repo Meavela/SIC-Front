@@ -25,7 +25,7 @@ class Result extends React.Component {
 
     async getOptions() {
         let res = await axios.get('http://localhost:3005/question/' + this.props.questionID);
-        //console.log(res)
+        console.log(res)
         this.setState({
             question: res.data.question,
             options: res.data.option,
@@ -36,7 +36,16 @@ class Result extends React.Component {
 
     async addVote(id) {
         //console.log(id)
-        await axios.post(`http://localhost:3005/question/vote/add`, { id, username: this.props.username });
+        if (this.props.admin) {
+            this.deleteOption(id);
+        } else {
+            await axios.post(`http://localhost:3005/question/vote/add`, { id, username: this.props.username });
+            this.getOptions();
+        }
+    }
+
+    deleteOption = async (id) => {
+        await axios.post(`http://localhost:3005/option/remove`, { id });
         this.getOptions();
     }
 
@@ -54,10 +63,7 @@ class Result extends React.Component {
             vote.push(res.data)
         }
 
-        this.setState({ vote: vote, hasVote: [] });
-
-        let idUser = await axios.get('http://localhost:3005/user/' + this.props.username + '/username')
-        this.checkUser(idUser.data.ID);
+        this.setState({ vote: vote });
     }
 
     checkUser(id) {
@@ -104,21 +110,20 @@ class Result extends React.Component {
                         <h1 style={{ marginBottom: 50 }}>Vote Result :</h1>
                         <Row style={{ textAlign: 'center' }}>
                             {options.map((item, i) => {
+                                console.log(item)
                                 return (
-                                    <Col key={i} sm>
-                                        <Card style={{ width: '18rem' }}>
-                                            <Card.Body>
-                                                <Card.Title>{item.Text}</Card.Title>
-                                                <Card.Text style={{ fontSize: 20 }}>{this.countVote(item.ID)}</Card.Text>
-                                                {hasVote[i] ?
-                                                    <Button variant="success" disabled={username ? false : true} onClick={() => this.removeVote(item.ID)}>À voté !</Button>
-                                                    :
-                                                    <Button variant="primary" disabled={username ? false : true} onClick={() => this.addVote(item.ID)}>Voter</Button>
-                                                }
-
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
+                                    item.Hide === "false" ?
+                                        <Col key={i} sm>
+                                            <Card style={{ width: '18rem' }}>
+                                                <Card.Body>
+                                                    <Card.Title>{item.Text}</Card.Title>
+                                                    <Card.Text style={{ fontSize: 20 }}>{this.countVote(item.ID)}</Card.Text>
+                                                    <Button variant="primary" disabled={this.props.admin ? false : username ? false : true} onClick={() => this.addVote(item.ID)}>{this.props.admin ? 'Delete' : 'Voter'}</Button>
+                                                </Card.Body>
+                                            </Card>
+                                        </Col>
+                                        :
+                                        null
                                 )
                             })}
                         </Row>
