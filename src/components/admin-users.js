@@ -56,6 +56,16 @@ class AdminUsers extends React.Component {
         }
     }
 
+    async addUser(json){
+        let isCreated = await axios.post('http://localhost:3005/users/add', json)
+        if (isCreated.status == "OK") {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     submitCreate = () => {
         console.log(this.state)
         var json = {"username":this.state.username, "password": this.state.password};
@@ -65,9 +75,12 @@ class AdminUsers extends React.Component {
         if (isExist) {
             this.setState({error: 'Username already exists'});
         }else{
-            // create the user
-            this.setState({success: 'Your user has been created'});
-            // add to the list
+            if (addUser(json)) {
+                this.setState({success: 'Your user has been created'});
+                // ajout à la liste
+            }else{
+                this.setState({error: 'Username already exists'});
+            }
         }
     }
 
