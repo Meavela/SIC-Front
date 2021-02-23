@@ -51,7 +51,7 @@ class Result extends React.Component {
 
     async removeVote(id) {
         console.log(id)
-        await axios.delete(`http://localhost:3005/question/` + id + `/vote/remove`);
+        await axios.delete(`http://localhost:3005/question/` + id + `/vote/remove`, {data: {username: this.props.username}});
         this.getOptions();
     }
 
@@ -63,7 +63,10 @@ class Result extends React.Component {
             vote.push(res.data)
         }
 
-        this.setState({ vote: vote });
+        this.setState({ vote: vote, hasVote: [] });
+
+        let idUser = await axios.get('http://localhost:3005/user/' + this.props.username + '/username')
+        this.checkUser(idUser.data.ID);
     }
 
     checkUser(id) {
@@ -118,7 +121,12 @@ class Result extends React.Component {
                                                 <Card.Body>
                                                     <Card.Title>{item.Text}</Card.Title>
                                                     <Card.Text style={{ fontSize: 20 }}>{this.countVote(item.ID)}</Card.Text>
-                                                    <Button variant="primary" disabled={this.props.admin ? false : username ? false : true} onClick={() => this.addVote(item.ID)}>{this.props.admin ? 'Delete' : 'Voter'}</Button>
+                                                    {hasVote[i] ?
+                                                        <Button variant="success" disabled={this.props.admin ? false : username ? false : true} onClick={() => this.removeVote(item.ID)}>{this.props.admin ? 'Delete' : 'A voté'}</Button>
+                                                        :
+                                                        <Button variant="primary" disabled={this.props.admin ? false : username ? false : true} onClick={() => this.addVote(item.ID)}>{this.props.admin ? 'Delete' : 'Voter'}</Button>
+                                                    }
+
                                                 </Card.Body>
                                             </Card>
                                         </Col>
