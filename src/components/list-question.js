@@ -7,14 +7,13 @@ class Questions extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            listQuestion: [],
-            activeItem: 1
+            listQuestion: []
         };
     }
 
     switchQuestion(id) {
         //console.log(id)
-        this.setState({activeItem: id})
+        this.props.setQuestionID(id)
     }
 
     async getQuestions() {
@@ -38,14 +37,14 @@ class Questions extends React.Component {
                     <Col xs={6} md={4}>
                         <ListGroup style={{ marginTop: 200 }}>
                             {this.state.listQuestion.map((item, i) =>
-                                <ListGroup.Item style={item.ID == this.state.activeItem ? {backgroundColor: '#0069D9', color: "white"} : null} key={i} action onClick={() => this.switchQuestion(item.ID)}>
+                                <ListGroup.Item style={item.ID == this.props.questionID ? {backgroundColor: '#0069D9', color: "white"} : null} key={i} action onClick={() => this.switchQuestion(item.ID)}>
                                     {item.Text}
                                 </ListGroup.Item>
                             )}
                         </ListGroup>
                     </Col>
                     <Col>
-                        <Result questionID={this.state.activeItem} username={this.props.username} />
+                        <Result admin={this.props.admin ? this.props.admin : false} questionID={this.props.questionID} username={this.props.username} />
                     </Col>
                 </Row>
             </div>
