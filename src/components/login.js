@@ -28,7 +28,9 @@ class Login extends React.Component {
     }
 
     async isExistUser(json){
+        console.log(json)
         let login = await axios.post('http://localhost:3005/login', json)
+        console.log(login)
         if (login.data.status == "OK") {
             return true;
         }
@@ -40,7 +42,7 @@ class Login extends React.Component {
     submitLogin = async () => {
         console.log(this.state)
         var json = {"username":this.state.username, "password": this.state.password};
-        var isExist = await this.isExistUser(JSON.stringify(json));
+        var isExist = await this.isExistUser(json);
 
         if (isExist) {
             this.setState({error: '', redirect: true});
