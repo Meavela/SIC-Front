@@ -1,8 +1,19 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
-import '../css/login.css';
-import  { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+
+const loginContent = {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '50%',
+    marginTop: '10%'
+}
+
+const errorContent = {
+    color: 'red',
+    fontWeight: 'bold',
+}
 
 class Login extends React.Component {
     constructor(props) {
@@ -12,22 +23,22 @@ class Login extends React.Component {
     }
 
     componentDidUpdate() {
-        if(this.state.redirect) {
+        if (this.state.redirect) {
             this.props.setUsername(this.state.username);
         }
     }
 
     changeUsername = (event) => {
         console.log(event.target.value);
-        this.setState({username: event.target.value});
+        this.setState({ username: event.target.value });
     }
 
     changePassword = (event) => {
         console.log(event.target.value);
-        this.setState({password: event.target.value});
+        this.setState({ password: event.target.value });
     }
 
-    async isExistUser(json){
+    async isExistUser(json) {
         console.log(json)
         let login = await axios.post('http://localhost:3005/login', json)
         console.log(login)
@@ -41,13 +52,13 @@ class Login extends React.Component {
 
     submitLogin = async () => {
         console.log(this.state)
-        var json = {"username":this.state.username, "password": this.state.password};
+        var json = { "username": this.state.username, "password": this.state.password };
         var isExist = await this.isExistUser(json);
 
         if (isExist) {
-            this.setState({error: '', redirect: true});
-        }else {
-            this.setState({error: 'Username or password are not correct, please try again', redirect: false});
+            this.setState({ error: '', redirect: true });
+        } else {
+            this.setState({ error: 'Username or password are not correct, please try again', redirect: false });
         }
     }
 
@@ -55,26 +66,26 @@ class Login extends React.Component {
     render() {
         if (this.state.redirect) {
             return <Redirect to="/" />
-        }else{
+        } else {
             return (
-                <div className="loginContent">
+                <div className={loginContent}>
                     <Form>
                         <Form.Group controlId="formBasicUsername">
                             <Form.Label>Username :</Form.Label>
-                            <Form.Control type="text" placeholder="Enter username" onChange={this.changeUsername}/>
+                            <Form.Control type="text" placeholder="Enter username" onChange={this.changeUsername} />
                             <Form.Text className="text-muted">
                             </Form.Text>
                         </Form.Group>
-    
+
                         <Form.Group controlId="formBasicPassword">
                             <Form.Label>Password :</Form.Label>
-                            <Form.Control type="password" placeholder="Enter Password" onChange={this.changePassword}/>
+                            <Form.Control type="password" placeholder="Enter Password" onChange={this.changePassword} />
                         </Form.Group>
-                        
+
                         <Form.Group>
-                            <Form.Label className="errorContent">{this.state.error}</Form.Label>
+                            <Form.Label className={errorContent}>{this.state.error}</Form.Label>
                         </Form.Group>
-    
+
                         <Button variant="primary" onClick={this.submitLogin}>
                             Login
                         </Button>
@@ -82,7 +93,7 @@ class Login extends React.Component {
                 </div>
             )
         }
-        
+
     }
 }
 
