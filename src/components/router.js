@@ -23,7 +23,7 @@ const RouterNav = () => {
             }>
                 <div>
                     <Route exact path="/login" component={() => <Login username={username} setUsername={setUsername} />}/>
-                    <Route exact path="/admin" component={Admin}/>
+                    <Route exact path="/admin" component={() => <Admin username={username}/>}/>
                     <Route exact path="/admin/users" component={AdminUsers}/>
                     <Route exact path="/admin/votes" component={AdminVotes}/>
                     <Route exact path="/" component={() =>  <Questions username={username} questionID={questionID} setQuestionID={setQuestionID}/>} />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class NavbarComponent extends React.Component {
 
@@ -16,13 +17,21 @@ class NavbarComponent extends React.Component {
             <div>
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                     <Navbar.Brand href="/">Votes</Navbar.Brand>
+                    <Navbar.Brand>
+                        <Link
+                            to={{
+                                pathname: "/admin",
+                                state: { username }
+                            }}
+                        >Admin</Link>
+                    </Navbar.Brand>
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto"></Nav>
                         <Nav>
                             {
                                 username ?
-                                    <p style={{color: "white"}}>{username}</p>
-                                :
+                                    <p style={{ color: "white" }}>{username}</p>
+                                    :
                                     <Nav.Link href="/login">Se connecter</Nav.Link>
                             }
                         </Nav>
