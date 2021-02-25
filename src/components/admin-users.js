@@ -136,9 +136,9 @@ class AdminUsers extends React.Component {
         return (
             <>
                 <Link to="/admin" >⬅ Back</Link>
-                <div className={contentForm}>
-                    <h1 className={title}>Admin Users Page - Users</h1>
-                    <div className={createContent}>
+                <div style={contentForm}>
+                    <h1 style={title}>Admin Users Page - Users</h1>
+                    <div style={createContent}>
                         <Form>
                             <Form.Group controlId="formBasicUsername">
                                 <Form.Label>Username :</Form.Label>
@@ -151,24 +151,24 @@ class AdminUsers extends React.Component {
                                 <Form.Control type="password" placeholder="Enter Password" onChange={this.changePassword} />
                             </Form.Group>
 
-                            <Form.Group className={errorContent}>
+                            <Form.Group style={errorContent}>
                                 <Form.Label >{this.state.error}</Form.Label>
                             </Form.Group>
 
-                            <Form.Group className={submitButton}>
-                                <Button className={buttonWidth} variant="primary" onClick={this.submitCreate}>
+                            <Form.Group style={submitButton}>
+                                <Button style={buttonWidth} variant="primary" onClick={this.submitCreate}>
                                     Create
                                 </Button>
                             </Form.Group>
 
 
-                            <Form.Group className={successContent}>
+                            <Form.Group style={successContent}>
                                 <Form.Label >{this.state.success}</Form.Label>
                             </Form.Group>
                         </Form>
                     </div>
                 </div>
-                <div className={contentTable}>
+                <div style={contentTable}>
                     <Table striped bordered hover variant="blue">
                         <thead>
                             <tr>

@@ -3,16 +3,17 @@ import { Form, Button } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
+
+const errorContent = {
+    color: 'red',
+    fontWeight: 'bold',
+}
+
 const loginContent = {
     marginLeft: 'auto',
     marginRight: 'auto',
     width: '50%',
     marginTop: '10%'
-}
-
-const errorContent = {
-    color: 'red',
-    fontWeight: 'bold',
 }
 
 class Login extends React.Component {
@@ -68,7 +69,7 @@ class Login extends React.Component {
             return <Redirect to="/" />
         } else {
             return (
-                <div className={loginContent}>
+                <div style={loginContent}>
                     <Form>
                         <Form.Group controlId="formBasicUsername">
                             <Form.Label>Username :</Form.Label>
@@ -83,7 +84,7 @@ class Login extends React.Component {
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label className={errorContent}>{this.state.error}</Form.Label>
+                            <Form.Label style={errorContent}>{this.state.error}</Form.Label>
                         </Form.Group>
 
                         <Button variant="primary" onClick={this.submitLogin}>

@@ -24,10 +24,10 @@ class Admin extends React.Component {
         return (
             <>
                 {username ?
-                    <Container className="styleContainer">
+                    <Container style={styleContainer}>
                         <Row>
                             <Col>
-                                <Card className="styleCard">
+                                <Card style={styleCard}>
                                     <Card.Body>
                                         <Card.Title>Admin Users</Card.Title>
                                         <Card.Subtitle className="mb-2 text-muted">Create new users</Card.Subtitle>
@@ -40,7 +40,7 @@ class Admin extends React.Component {
                                 </Card>
                             </Col>
                             <Col>
-                                <Card className="styleCard">
+                                <Card style={styleCard}>
                                     <Card.Body>
                                         <Card.Title>Admin Votes</Card.Title>
                                         <Card.Subtitle className="mb-2 text-muted">Create/Delete choices votes</Card.Subtitle>

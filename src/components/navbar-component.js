@@ -16,7 +16,14 @@ class NavbarComponent extends React.Component {
         return (
             <div>
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                    <Navbar.Brand href="/">Votes</Navbar.Brand>
+                    <Navbar.Brand>
+                        <Link
+                            to={{
+                                pathname: "/",
+                                state: { username }
+                            }}
+                        >Votes</Link>
+                    </Navbar.Brand>
                     <Navbar.Brand>
                         <Link
                             to={{
