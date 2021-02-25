@@ -1,5 +1,10 @@
-import sum from './sum';
+import React from 'react';
+import renderer from 'react-test-renderer';
+import Questions from '../components/list-question';
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
+it('test', () => {
+  const tree = renderer
+    .create(<Questions />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });
