@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`login page correctly 1`] = `
+<div
+  style={
+    Object {
+      "marginLeft": "auto",
+      "marginRight": "auto",
+      "marginTop": "10%",
+      "width": "50%",
+    }
+  }
+>
+  <form
+    className=""
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        className="form-label"
+        htmlFor="formBasicUsername"
+      >
+        Username :
+      </label>
+      <input
+        className="form-control"
+        id="formBasicUsername"
+        onChange={[Function]}
+        placeholder="Enter username"
+        type="text"
+      />
+      <small
+        className="text-muted form-text"
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        className="form-label"
+        htmlFor="formBasicPassword"
+      >
+        Password :
+      </label>
+      <input
+        className="form-control"
+        id="formBasicPassword"
+        onChange={[Function]}
+        placeholder="Enter Password"
+        type="password"
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        className="form-label"
+        style={
+          Object {
+            "color": "red",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        
+      </label>
+    </div>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Login
+    </button>
+  </form>
+</div>
+`;

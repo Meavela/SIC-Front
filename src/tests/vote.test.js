@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 import Questions from '../components/list-question';
 import Result from '../components/result';
 import Navbar from '../components/navbar-component';
+import { BrowserRouter } from 'react-router-dom';
 
 it('test questions list', () => {
   const tree = renderer
@@ -20,7 +21,7 @@ it('test results', () => {
 
 it('test navbar', () => {
   const tree = renderer
-    .create(<Navbar />)
+    .create(<BrowserRouter><Navbar /></BrowserRouter>)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

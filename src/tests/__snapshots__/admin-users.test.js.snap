@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`admin user page correctly 1`] = `
+Array [
+  <a
+    href="/admin"
+    onClick={[Function]}
+  >
+    ⬅ Back
+  </a>,
+  <div
+    style={
+      Object {
+        "marginLeft": "auto",
+        "marginRight": "auto",
+        "width": "50%",
+      }
+    }
+  >
+    <h1
+      style={
+        Object {
+          "marginTop": "5%",
+          "textAlign": "center",
+        }
+      }
+    >
+      Admin Users Page - Users
+    </h1>
+    <div
+      style={
+        Object {
+          "marginTop": "10%",
+        }
+      }
+    >
+      <form
+        className=""
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className="form-label"
+            htmlFor="formBasicUsername"
+          >
+            Username :
+          </label>
+          <input
+            className="form-control"
+            id="formBasicUsername"
+            onChange={[Function]}
+            placeholder="Enter username"
+            type="text"
+          />
+          <small
+            className="text-muted form-text"
+          />
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            className="form-label"
+            htmlFor="formBasicPassword"
+          >
+            Password :
+          </label>
+          <input
+            className="form-control"
+            id="formBasicPassword"
+            onChange={[Function]}
+            placeholder="Enter Password"
+            type="password"
+          />
+        </div>
+        <div
+          className="form-group"
+          style={
+            Object {
+              "color": "red",
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          <label
+            className="form-label"
+          >
+            
+          </label>
+        </div>
+        <div
+          className="form-group"
+          style={
+            Object {
+              "marginLeft": "auto",
+              "marginRight": "auto",
+              "width": "20%",
+            }
+          }
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            style={
+              Object {
+                "width": "120%",
+              }
+            }
+            type="button"
+          >
+            Create
+          </button>
+        </div>
+        <div
+          className="form-group"
+          style={
+            Object {
+              "color": "green",
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          <label
+            className="form-label"
+          >
+            
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>,
+  <div
+    style={
+      Object {
+        "marginLeft": "auto",
+        "marginRight": "auto",
+        "marginTop": "2%",
+        "textAlign": "center",
+        "width": "80%",
+      }
+    }
+  >
+    <table
+      className="table table-blue table-striped table-bordered table-hover"
+    >
+      <thead>
+        <tr>
+          <th>
+            Id
+          </th>
+          <th>
+            Username
+          </th>
+        </tr>
+      </thead>
+      <tbody />
+    </table>
+  </div>,
+]
+`;

@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test navbar 1`] = `
+<div>
+  <nav
+    className="navbar navbar-expand-lg navbar-dark bg-dark"
+  >
+    <span
+      className="navbar-brand"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        Votes
+      </a>
+    </span>
+    <span
+      className="navbar-brand"
+    >
+      <a
+        href="/admin"
+        onClick={[Function]}
+      >
+        Admin
+      </a>
+    </span>
+    <div
+      aria-expanded={null}
+      className="navbar-collapse collapse"
+      id="responsive-navbar-nav"
+    >
+      <div
+        className="mr-auto navbar-nav"
+        onKeyDown={[Function]}
+      />
+      <div
+        className="navbar-nav"
+        onKeyDown={[Function]}
+      >
+        <a
+          className="nav-link"
+          data-rb-event-key="/login"
+          href="/login"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+        >
+          Se connecter
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+`;
+
+exports[`test questions list 1`] = `
+<div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-4 col-6"
+    >
+      <div
+        className="list-group"
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "marginTop": 200,
+          }
+        }
+      />
+    </div>
+    <div
+      className="col"
+    >
+      <div />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`test results 1`] = `<div />`;

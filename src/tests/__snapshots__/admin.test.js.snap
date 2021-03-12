@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`admin page correctly 1`] = `
+<p>
+  You have to be connected as admin to view this page
+</p>
+`;
